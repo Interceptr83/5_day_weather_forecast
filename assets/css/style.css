@@ -1,0 +1,94 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    background-image: linear-gradient(180deg,#38327e 0%,#0f39da 50%, #00d4ff 100%);
+  }
+
+  .pageCard {
+    min-height: 100vh;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  header {
+    text-align: center;
+    background-color: rgb(138, 161, 231);
+    font-family: 'Acme', sans-serif;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+    padding: 30px;
+    margin: 30px;
+  }
+
+  .searchCard {
+    text-align: center;
+    font-family: 'Prata', serif;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .search{
+    font-family: 'Prata', serif;
+    border-radius: 10px;
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+  }
+
+  button {
+    background-color: #12b7d9;
+    color: white;
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 5px;
+  }
+
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .currentCard {
+    color: white;
+    text-align: center;
+    font-family: 'Prata', serif;
+    background-color: rgb(138, 161, 231);
+    border-radius: 10px;
+    padding: 10px 0px 10px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 30px;
+  }
+
+h2 {
+    text-align: center;
+    font-family: 'Prata', serif;  
+}
+
+h6 {
+    display: inline;
+}
+
+.forecastCard {
+    color: white;
+    text-align: center;
+    font-family: 'Prata', serif;
+    background-color: rgb(138, 161, 231);
+    border-radius: 10px;
+    padding: 10px 0px 10px 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px 0px 10px 0px;
+    margin: 5px 0px 30px 5px;
+  }
+
+.hidden {
+    display: none;
+}
