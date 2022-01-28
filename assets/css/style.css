@@ -42,17 +42,32 @@ body {
   }
 
   button {
-    background-color: #12b7d9;
+    background-color: #00e1ff;
     color: white;
     padding: 10px 0px 10px 0px;
     margin: 10px 0px 10px 0px;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 5px;
+    border: none;
   }
 
   button:hover {
     background-color: white;
+    color: black;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .history {
+    background-color:  grey;
+    color: black;
+  }
+
+  .history:hover {
+    background-color: rgb(173, 170, 170);
     color: black;
   }
 
@@ -73,8 +88,14 @@ h2 {
     font-family: 'Prata', serif;  
 }
 
+h5 {
+  text-align: center;
+  font-family: 'Prata', serif;
+}
+
 h6 {
     display: inline;
+    font-family: 'Prata', serif;
 }
 
 .forecastCard {
