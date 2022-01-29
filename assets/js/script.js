@@ -13,36 +13,77 @@ dayjs.extend(window.dayjs_plugin_timezone);
 
 
 
-           
+function drawTodayCard (city, weather, time) {
+    let date = dayjs().tz(time).format('M/D/YYYY');
+    let curDate = document.getElementById("todayDate");
+    let todayTemp = document.getElementById("todayTemp");
+    let todayWind = document.getElementById("todayWind");
+    let todayHum = document.getElementById("todayHum");
+    let uv = document.getElementById("uv");
+    todayCity.textContent = city;
+    curDate = `${date}`;
+    todayTemp.textContent = weather.temp;
+    todayWind.textContent = weather.wind_speed;
+    todayHum.textContent = weather.humidity;
+    uv = weather.uvi;
+    console.log(city);
+    console.log(date);
+    console.log(weather.temp);
+    console.log(weather.wind_speed);
+    console.log(weather.humidity);
+    console.log(weather.uvi);
+};
 
-function getLatLon(search){
-var url = `${apiUrl}/geo/1.0/direct?q${search}&limit=5&appid=${apiKey}`;
-fetch(apiUrl)
-    .then(function (res) {
-      console.log(res.json());;
-      return res.json();
-    })
-    .then(function (data) {
-      if (!data[0]) {
-        alert('Location not found');
-      } else {
-        appendToHistory(search);
-        fetchWeather(data[0]);
-      }
-    })
-    .catch(function (err) {
-      console.error(err);
-    });
+function getCityInfo(cityData) {
+    console.log(cityData);
+    var lat = cityData.lat;
+    var lon = cityData.lon;
+    var city = cityData.name;
+    /* console.log(lat);
+    console.log(lon);
+    console.log(city); */
+    var url = `${apiUrl}/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely,hourly&appid=${apiKey}`;
 
-          
-};     
+    fetch(url)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        drawTodayCard(city, data.current, data.timezone);
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
+      console.log(url); 
+}        
 
-function citySearch(){
+function getLatLon(search) {
+  var url = apiUrl + "/geo/1.0/direct?q="+ search + "&limit=5&appid=" + apiKey;
+      fetch(url)
+          .then(function (response) {
+              return response.json();
+          })
+          .then(function (data) {
+            if (!data[0]) {
+              alert('Location not found');
+            } else {
+              addHistory(search)
+              getCityInfo(data[0]);
+              return;
+            }
+          })
+          .catch(function (err) {
+               console.log('error: ' + err);
+           });
+           /* console.log(url); */
+};   
+
+function citySearch(e){
           
     if (!searchEl.value) {
       return;
     }
-          
+    e.preventDefault();      
     var search = searchEl.value.trim();
     getLatLon(search);
     searchEl.value = '';
@@ -52,7 +93,43 @@ function citySearch(){
 };
 
 
+// local storage functions
+function addHistory(search) {
+  // If there is no search term return the function
+  if (searchHistory.indexOf(search) !== -1) {
+    return;
+  };
+  searchHistory.push(search);
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+  searchHistoryButtons();
+};
+
+function historyButtons() {
+  let historySec = document.getElementById("searchHistory");
+  historySec.innerHTML = '';
+  for (var i = searchHistory.length - 1; i >= searchHistory.length - 5; i--) {
+    var btn = document.createElement('button');
+    btn.setAttribute('type', 'button');
+    btn.setAttribute("class", "history");
+    var space = document.createElement("br");
+
+    // `data-search` allows access to city name when click handler is invoked
+    //btn.setAttribute('data-search', searchHistory[i]);
+    btn.textContent = searchHistory[i];
+    historySec.append(btn);
+    historySec.append(space);
+  };
+};
+
+function createHistory() {
+  var savedHistory = localStorage.getItem('searchHistory');
+  if (savedHistory) {
+    searchHistory = JSON.parse(savedHistory);
+  };
+  historyButtons();
+};
+
 submitEl.onclick = citySearch;
-/* createHistory();
-searchForm.addEventListener('submit', handleSearchFormSubmit);
-searchHistoryContainer.addEventListener('click', handleSearchHistoryClick);  */
+createHistory();
+/* searchForm.addEventListener('submit', handleSearchFormSubmit);
+searchHistoryContainer.addEventListener('click', handleSearchHistoryClick); */
