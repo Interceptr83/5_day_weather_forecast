@@ -16,23 +16,46 @@ dayjs.extend(window.dayjs_plugin_timezone);
 function drawTodayCard (city, weather, time) {
     let date = dayjs().tz(time).format('M/D/YYYY');
     let curDate = document.getElementById("todayDate");
+    let todayIcon = document.getElementById("todayIcon");
     let todayTemp = document.getElementById("todayTemp");
     let todayWind = document.getElementById("todayWind");
     let todayHum = document.getElementById("todayHum");
     let uv = document.getElementById("uv");
+    let uvcolor = document.getElementById("uvcolor");
+    let uvIcon = `https://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
     todayCity.textContent = city;
-    curDate = `${date}`;
+    curDate.textContent = date;
+    todayIcon.setAttribute("src", uvIcon);
     todayTemp.textContent = weather.temp;
     todayWind.textContent = weather.wind_speed;
     todayHum.textContent = weather.humidity;
-    uv = weather.uvi;
-    console.log(city);
+    uv.textContent = weather.uvi;
+
+if (weather.uvi < 3){
+  uvcolor.setAttribute("class", "uvcard green");
+} else if (weather.uvi < 6){
+  uvcolor.setAttribute("class", "uvcard yellow");
+} else if (weather.uvi < 8){
+  uvcolor.setAttribute("class", "uvcard orange");
+} else{
+uvcolor.setAttribute("class", "uvcard red");
+};
+
+    /* console.log(city);
     console.log(date);
     console.log(weather.temp);
     console.log(weather.wind_speed);
     console.log(weather.humidity);
-    console.log(weather.uvi);
+    console.log(weather.uvi); */
 };
+
+function drawFiveDay(daily, time) {
+  var startDt = dayjs().tz(time).add(1, 'day').startOf('day').unix();
+  var endDt = dayjs().tz(time).add(6, 'day').startOf('day').unix();
+  console.log(startDt);
+  console.log(endDt);
+
+}
 
 function getCityInfo(cityData) {
     console.log(cityData);
@@ -50,6 +73,7 @@ function getCityInfo(cityData) {
       })
       .then(function (data) {
         drawTodayCard(city, data.current, data.timezone);
+        drawFiveDay(data.daily, data.timezone);
       })
       .catch(function (err) {
         console.error(err);
