@@ -181,18 +181,16 @@ function citySearch(e){
     e.preventDefault();      
     var search = searchEl.value.trim();
     getLatLon(search);
-    searchEl.value = "";
+    searchEl.value = "enter city name...";
 
     
 };
 
 // function to begin the search for lat and lon values using search history buttons instead of the input field
 function useSearchHistory(e) {
-  // Don't do search if current elements is not a search history button
-  if (!e.target.matches("history")) {
+  if (!e.target.matches("button.history")) {
     return;
   };
-
   var btn = e.target;
   var search = btn.getAttribute("data-search");
   getLatLon(search);
@@ -208,11 +206,9 @@ function useSearchHistory(e) {
 
 // function to add the recent search to the search history and then redraw the buttons to the page
 function addHistory(search) {
-    if (searchHistory.indexOf(search) !== -1) {
-        return;
-    };
     searchHistory.push(search);
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    console.log(searchHistory);
     // call to redraw buttons to page after adding new search to search history
     historyButtons();
 };
@@ -230,27 +226,14 @@ function historyButtons() {
 
         var btn = document.createElement("button");
         btn.setAttribute("type", "button");
-        btn.classList.add('history-btn',  'btn-history');
-        /* btn.setAttribute("class", "history "); */
+        btn.setAttribute("class", "history");
         var space = document.createElement("br");
-
-        // `data-search` allows access to city name when click handler is invoked
         btn.setAttribute("data-search", searchHistory[i]);
+        // console.log(searchHistory[i]);
         btn.textContent = searchHistory[i];
         historySec.append(btn);
         historySec.append(space);
 
-
-        /* var btn = document.createElement('button');
-        btn.setAttribute('type', 'button');
-        btn.setAttribute("class", `history `);
-        var space = document.createElement("br");
-
-        // `data-search` allows access to city name when click handler is invoked
-        //btn.setAttribute('data-search', searchHistory[i]);
-        btn.textContent = searchHistory[i];
-        historySec.append(btn);
-        historySec.append(space); */
     };
 };
 
@@ -258,6 +241,7 @@ function historyButtons() {
 // function to pull the list of previous searches from loacal storage and then have buttons for them created on the page
 function createHistory() {
     var savedHistory = localStorage.getItem("searchHistory");
+    console.log(savedHistory);
     if (savedHistory) {
         searchHistory = JSON.parse(savedHistory);
     };

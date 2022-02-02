@@ -18,7 +18,7 @@
     <main class="container pageCard">
 
             <header class="row">
-                <h1>5 Day Weather Forecast</h1>
+                <h1>5 Day <span class="iconify-inline" data-icon="flat-ui:weather" data-width="50" data-height="50"></span> Weather Forecast</h1>
             </header>
 
             <section class="row">
@@ -27,7 +27,7 @@
                         <h2>Please Enter Your City</h2>
                         <input id="searchFld" class="search" type="text" onfocus="this.value=''" value="enter city name..."><br>
                         <button id="searchBut">Search</button>
-                        <h5>Search History:</h5>
+                        <h5>Recent Searches:</h5>
                         <div id="searchHistory"></div>
                     </div>
                     <div class="col-lg-4"></div>
@@ -92,8 +92,6 @@
     </main>
     
 <!--Script Includes-->
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js" integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/utc.min.js" integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js" integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg==" crossorigin="anonymous"></script>

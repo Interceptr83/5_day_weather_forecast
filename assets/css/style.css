@@ -1,3 +1,6 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -15,11 +18,12 @@ body {
   header {
     text-align: center;
     background-color: rgb(138, 161, 231);
-    font-family: 'Acme', sans-serif;
+    /* font-family: 'Acme', sans-serif; */
     color: white;
     border-radius: 10px 10px 0px 0px;
     padding: 30px;
     margin: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .searchCard {
